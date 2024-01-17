@@ -4,14 +4,14 @@ import { editProveedor } from "@/lib/actions"
 
 
 async function page({ searchParams }) {
-  const [proveedores] = await db.query('select * from proveedores where id = ?', [searchParams.id]);
+  const [proveedor] = await db.query('select * from proveedores where id = ?', [searchParams.id]);
 
   return (
     <div>
-      <h3>Editar proveedor {searchParams.id}</h3>
+      <h3>Editar artículo {searchParams.id}</h3>
         <Form action={editProveedor}
-          title='Actualizar proveedor'
-          proveedores={proveedores}
+          title='Actualizar artículo'
+          proveedor={proveedor}
           disabled={false} />
     </div>
   )

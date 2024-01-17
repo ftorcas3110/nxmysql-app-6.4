@@ -1,28 +1,28 @@
 import Imagen from "@/components/Imagen"
 import Button from "@/components/Button"
 
-function Form({ action, title, articulo, disabled }) {
+function Form({ action, title, proveedor, disabled }) {
     
     return (
         <form id="preview" >
-            <Imagen img={articulo?.imagen ?? '/imagen.png'} />
+            <Imagen img={proveedor?.imagen ?? '/imagen.png'} />
 
             <div class="datos">
-                <input type='hidden' name='id' value={articulo?.id} />
+                <input type='hidden' name='id' value={proveedor?.id} />
                 <fieldset disabled={disabled}>
                     <label htmlFor='nombre'>Nombre</label>
                     <input type='text' required
                         id='nombre'
                         name='nombre'
                         placeholder='Nombre'
-                        defaultValue={articulo?.nombre}
+                        defaultValue={proveedor?.nombre}
                         autoFocus />
                     <label htmlFor='telefono'>Teléfono</label>
-                    <input type='number'
+                    <input type='text'
                         id='telefono'
                         name='telefono'
                         placeholder='Teléfono'
-                        defaultValue={articulo?.telefono} />
+                        defaultValue={proveedor?.telefono} />
                 </fieldset>
                 <Button action={action} title={title} />
                 {/* <button formAction={action}>{title}</button> */}

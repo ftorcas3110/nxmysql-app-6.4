@@ -1,5 +1,3 @@
-
-
 function Proveedor({ children, proveedor }) {
     return (
         <div style={{ 'border': '1px solid lightgrey', 'padding': '50px' }}>

@@ -14,12 +14,12 @@ export default async function Proveedores() {
                     <Proveedor key={proveedor.id} proveedor={proveedor} >
                         <Link
                             className='enlace'
-                            href={{ pathname: '/proveedores/edit', query: { id: proveedores.id } }}>
+                            href={{ pathname: '/proveedores/edit', query: { id: proveedor.id } }}>
                             Editar artículo
                         </Link>
                         <Link
                             className='enlace'
-                            href={{ pathname: '/proveedores/delete', query: { id: proveedores.id } }}>
+                            href={{ pathname: '/proveedores/delete', query: { id: proveedor.id } }}>
                             Eliminar artículo
                         </Link>
                     </Proveedor>

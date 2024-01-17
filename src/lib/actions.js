@@ -72,7 +72,7 @@ export async function getProveedores() {
   try {
     // Retardo artificial para fines demostrativos.
     // No realizar en la vida real :)
-    console.log('Recuperando artículos...');
+    console.log('Recuperando proveedores...');
     await new Promise((resolve) => setTimeout(resolve, 3000));
 
 
@@ -154,6 +154,7 @@ export async function editProveedor(formData) {
   }
   redirect('/proveedores');
 }
+
 
 export async function deleteArticulo(formData) {
   try {

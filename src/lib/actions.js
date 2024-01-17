@@ -66,6 +66,26 @@ export async function getArticulos() {
   }
 }
 
+export async function getProveedores() {
+  unstable_noStore()  // para no cachear datos
+
+  try {
+    // Retardo artificial para fines demostrativos.
+    // No realizar en la vida real :)
+    console.log('Recuperando artículos...');
+    await new Promise((resolve) => setTimeout(resolve, 3000));
+
+
+    const results = await db.query('select * from proveedores');
+    console.log(results);
+
+    return results;
+  } catch (error) {
+    console.log(error);  
+    return null;
+  }
+}
+
 export async function newArticulo(formData) {
   try {
     const nombre = formData.get('nombre');
@@ -81,6 +101,22 @@ export async function newArticulo(formData) {
     console.log(error);
   }
   redirect('/articulos');
+}
+
+export async function newProveedor(formData) {
+  try {
+    const nombre = formData.get('nombre');
+    const telefono = formData.get('telefono');
+    const file = formData.get('file')
+    const imagen = await imgCreate(file)
+
+    const query = 'insert into proveedores(nombre,telefono,imagen) values (?, ?, ?)';
+    const results = await db.query(query, [nombre, telefono, imagen]);
+    console.log(results);
+  } catch (error) {
+    console.log(error);
+  }
+  redirect('/proveedores');
 }
 
 
@@ -102,6 +138,23 @@ export async function editArticulo(formData) {
   redirect('/articulos');
 }
 
+export async function editProveedor(formData) {
+  const id = formData.get('id')
+  const nombre = formData.get('nombre')
+  const telefono = formData.get('telefono')
+  const file = formData.get('file')
+  const imagen = await imgCreate(file)
+
+  try {
+    const query = 'update proveedores set ? where id = ? ';
+    const results = await db.query(query, [{ nombre, telefono, imagen }, id]);
+    console.log(results);
+  } catch (error) {
+    console.log(error);
+  }
+  redirect('/proveedores');
+}
+
 export async function deleteArticulo(formData) {
   try {
     const id = formData.get('id');
@@ -113,4 +166,17 @@ export async function deleteArticulo(formData) {
     console.log(error);
   }
   redirect('/articulos');
+}
+
+export async function deleteProveedor(formData) {
+  try {
+    const id = formData.get('id');
+
+    const query = 'delete from proveedores where id = ?';
+    const results = await db.query(query, [id]);
+    console.log(results);
+  } catch (error) {
+    console.log(error);
+  }
+  redirect('/proveedores');
 }
